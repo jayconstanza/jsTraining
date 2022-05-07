@@ -1,0 +1,22 @@
+.ContextualMenu {
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    text-align: left;
+    text-decoration: none;
+    width: 128px;
+  }
+.ContextualMenu li{
+    background-color: rgba(237, 237, 237, 0.9);
+    padding: 1rem;
+  }
+.ContextualMenu li:hover{
+    background-color: rgba(50, 50, 93, 0.95);
+    color: #fff;
+    cursor: pointer;
+  }
+.ContextualMenu li:not(:first-child){
+    border-top: 1px solid rgba(0, 0, 0, 0.3);
+  }
