@@ -45,10 +45,10 @@ class Card extends Component {
     this.lastName = props.lastName;
     this.mood = props.mood;
   }
-  formatName(props) {
+  private formatName(props) {
     return props.firstName + ' ' + props.lastName;
   }
-  toggleContextualMenu(e: React.MouseEvent){
+  private toggleContextualMenu(e: React.MouseEvent){
     e.preventDefault()
     if (e.currentTarget === e.target) {
       console.log('clicked self', e);
