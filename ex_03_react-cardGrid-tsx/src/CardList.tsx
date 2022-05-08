@@ -66,3 +66,6 @@ function CardList() {
   );
 }
 export default CardList;
+
+// TODO: person input UI
+// TODO: person input logic
