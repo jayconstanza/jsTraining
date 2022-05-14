@@ -3,58 +3,71 @@ import { Component } from 'react';
 import Card from './Card';
 import * as THREE from 'three';
 
-let scene, camera, renderer, cube;
+let scenes = [];
+let cameras = [];
+let renderers = [];
+let cubes = [];
 
 type Person = {
   firstName: string;
   lastName: string;
   mood: string;
+  id: number;
 }
 
 const people: Person[] = [{
   firstName: "Paco",
   lastName: "Pérez",
-  mood: "🐼"
+  mood: "🐼",
+  id: 1
 },
 {
   firstName: "Carlos",
   lastName: "Asensio",
-  mood: "🐷"
+  mood: "🐷",
+  id: 2
 },
 {
   firstName: "Pepe",
   lastName: "Alicia",
-  mood: "🐷"
+  mood: "🐷",
+  id: 3
 },
 {
   firstName: "Jose Carlos",
   lastName: "Saaz",
-  mood: "🐷"
+  mood: "🐷",
+  id: 4
 },
 {
   firstName: "Carlos",
   lastName: "Asensio",
-  mood: "🐷"
+  mood: "🐷",
+  id: 5
 },
 {
   firstName: "Rubén",
   lastName: "Parra",
-  mood: "🐷"
+  mood: "🐷",
+  id: 6
 },
 {
   firstName: "Carla",
   lastName: "Vasile",
-  mood: "🤬"
+  mood: "🤬",
+  id: 7
 },
 {
   firstName: "Lourdes",
   lastName: "Perales",
-  mood: "🐹"
+  mood: "🐹",
+  id: 8
 },
 {
   firstName: "Jay",
   lastName: "Constanza",
-  mood: "😎"
+  mood: "😎",
+  id: 9
 }];
 
 const listItems = people.map((person: Person) =>
@@ -66,22 +79,21 @@ class CardList extends Component {
     super(props);
     this.animate = this.animate.bind(this);
   }
-  init() {
+  init(index: number) {
     //creating scene
-    scene = new THREE.Scene();
+    scenes.push(new THREE.Scene());
     // scene.background = new THREE.Color(0x2a3b4c);
 
     //add camera
-    camera = new THREE.PerspectiveCamera(
+    cameras.push(new THREE.PerspectiveCamera(
       75,
       240 / 240
-    );
+    ));
 
     //renderer
-    renderer = new THREE.WebGLRenderer( { alpha: true } );
-    renderer.setSize(240, 240);
-    renderer.setClearColor( 0x000000, 0 );
-    //document.body.appendChild(renderer.domElement);
+    renderers.push(new THREE.WebGLRenderer( { alpha: true } ));
+    renderers[index].setSize(240, 240);
+    renderers[index].setClearColor( 0x000000, 0 );
 
     //add geometry
     var geometry = new THREE.BoxGeometry();
@@ -89,31 +101,35 @@ class CardList extends Component {
       color: 0x00ff00,
       wireframe: true,
     });
-    cube = new THREE.Mesh(geometry, material);
+    cubes.push(new THREE.Mesh(geometry, material));
 
-    scene.add(cube);
+    scenes[index].add(cubes[index]);
 
-    camera.position.z = 3;
+    cameras[index].position.z = 3;
 
-    return renderer.domElement;
+    return renderers[index].domElement;
   }
   animate() {
     requestAnimationFrame(this.animate);
-    // renderer.autoClear = true;
-    cube.rotation.x += 0.01;
-    cube.rotation.y += 0.01;
-    renderer.render(scene, camera);
-    // renderer.autoClear = false;
+    for (let i = 0; i < document.getElementsByClassName("Render").length; i++){
+      cubes[i].rotation.x += 0.01;
+      cubes[i].rotation.y += 0.01;
+      renderers[i].render(scenes[i], cameras[i]);
+      renderers[i].autoClear = false;
+    }
     
   }
   componentDidMount(): void {
-    document.getElementsByClassName("Render")[0].appendChild(this.init());
+    for (let i = 0; i < document.getElementsByClassName("Render").length; i++){
+      document.getElementsByClassName("Render")[i].appendChild(this.init(i));
+    }
     this.animate();
+
   }
   render() {
     return (
       <div className="CardList">
-        {listItems}
+        {listItems.map(item => <div key="{item.id}">{item}</div>)}
       </div>
     );
   }
