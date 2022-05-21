@@ -40,7 +40,7 @@ class Card extends Component {
       onContextMenu={this.toggleContextualMenu}>
         <h1 className="Card-name">{this.formatName(this.props)}</h1>
         <h2 className="Card-mood">{this.mood}</h2>
-        <div className="Render">hey</div>
+        <div className="Render"></div>
       </div>
     );
   }
