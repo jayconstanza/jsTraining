@@ -14,7 +14,6 @@
 }
 .Card:hover{
   background: none;
-  /* border: 1px solid rgba(16, 16, 16, 0.25); */
   border-radius: 1rem;
   cursor: pointer;
   transition: all .25s;
@@ -28,6 +27,12 @@
 }
 .Card-mood {
   animation: moodRotation 5s ease-in-out 2s infinite alternate-reverse;
+}
+
+.Render {
+  margin: 0 auto;
+  position: relative;
+  width: 128px;
 }
 /* TODO: odds and pairs */
 
