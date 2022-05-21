@@ -87,12 +87,12 @@ class CardList extends Component {
     //add camera
     cameras.push(new THREE.PerspectiveCamera(
       75,
-      240 / 240
+      128 / 128
     ));
 
     //renderer
     renderers.push(new THREE.WebGLRenderer( { alpha: true } ));
-    renderers[index].setSize(240, 240);
+    renderers[index].setSize(128, 128);
     renderers[index].setClearColor( 0x000000, 0 );
 
     //add geometry
