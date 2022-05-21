@@ -2,6 +2,7 @@
 import './App.css';
 import CardList from './CardList'
 import ContextualMenu from './ContextualMenu'
+import Form from './Form'
 
 
 function App() {
@@ -9,6 +10,7 @@ function App() {
     <section className="App">
       <CardList/>
       <ContextualMenu />
+      <Form/>
     </section>
   );
 }
